@@ -2,7 +2,7 @@
 
 int main() {
 	
-	int tam, i, j, sum, opt = -1;
+	int tam, sum, opt = -1;
 
 	menu();
 

@@ -96,7 +96,7 @@ int runMatrix(int n, int matrix[n][n], int sum){
 				else if(matrix[i][j-1] > matrix[i+1][j]){
 					sum = sum + matrix[i][j-1];
 					printf("Left ");
-					matrix[i][j];
+					matrix[i][j] = -1;
 					j--;
 				}
 
