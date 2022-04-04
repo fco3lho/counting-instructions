@@ -8,6 +8,8 @@ int createMatrix(int n, int matrix[n][n]){
 			matrix[i][j] = rand() % MAXTAM;
 		}
 	}
+
+	return 0;
 }
 
 void printMatrix(int n, int matrix[n][n]){
@@ -126,6 +128,8 @@ int runMatrix(int n, int matrix[n][n], int sum){
 
 	printf("\nA soma dos elementos percorridos é: %d\n", sum);
 	printf("--------------------------------------------------\n\n");	
+
+	return 0;
 }
 
 void menu(){
