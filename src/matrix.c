@@ -23,11 +23,17 @@ void printMatrix(int n, int matrix[n][n]){
 }
 
 int runMatrix(int n, int matrix[n][n], int sum){
-	int i = 0, j = 0, checker = 0; 
+	int i = 0, j = 0, k = 0, checker = 0, nSum = 0; 
 	sum = matrix[0][0];
+	int n2 = (n*n), matSum[n2];
 
 	if(n > 1){
-		printf("\nCaminho percorrido desde a posição [0][0] até a posição [%d][%d]: ", n, n);
+		printf("\nCaminho percorrido desde a posição [0][0] até a posição [%d][%d]: \n", n, n);
+
+		printf("Posição inicial - Valor a ser somado: %d\n", matrix[0][0]);
+
+		matSum[0] = matrix[0][0];
+		k++;
 
 		while(checker != 1){
 
@@ -35,22 +41,40 @@ int runMatrix(int n, int matrix[n][n], int sum){
 				
 				if(matrix[i][j+1] > matrix[i+1][j]){
 					sum = sum + matrix[i][j+1];
-					printf("Right ");
+					printf("Right - ");
 					matrix[i][j] = -1;
+					printf("Valor a ser somado: %d", matrix[i][j+1]);
+					nSum = nSum + 1;
+
+					matSum[k] = matrix[i][j+1];
+					k++;
+
 					j++;
 				}
 
 				else if(matrix[i+1][j] > matrix[i][j+1]){
 					sum = sum + matrix[i+1][j];
-					printf("Down ");
+					printf("Down - ");
 					matrix[i][j] = -1;
+					printf("Valor a ser somado: %d", matrix[i+1][j]);
+					nSum = nSum + 1;
+
+					matSum[k] = matrix[i+1][j];
+					k++;
+
 					i++;
 				}
 
 				else if(matrix[i+1][j] == matrix[i][j+1]){
 					sum = sum + matrix[i+1][j];
-					printf("Down ");
+					printf("Down - ");
 					matrix[i][j] = -1;
+					printf("Valor a ser somado: %d", matrix[i+1][j]);
+					nSum = nSum + 1;
+
+					matSum[k] = matrix[i+1][j];
+					k++;
+
 					i++;
 				}
 			}
@@ -59,29 +83,53 @@ int runMatrix(int n, int matrix[n][n], int sum){
 
 				if((matrix[i][j+1] > matrix[i+1][j]) && (matrix[i][j+1] > matrix[i][j-1])){
 					sum = sum + matrix[i][j+1];
-					printf("Right ");
+					printf("Right - ");
 					matrix[i][j] = -1;
+					printf("Valor a ser somado: %d", matrix[i][j+1]);
+					nSum = nSum + 1;
+
+					matSum[k] = matrix[i][j+1];
+					k++;
+
 					j++;
 				}
 
 				else if((matrix[i+1][j] > matrix[i][j+1]) && (matrix[i+1][j] > matrix[i][j-1])){
 					sum = sum + matrix[i+1][j];
-					printf("Down ");
+					printf("Down - ");
 					matrix[i][j] = -1;
+					printf("Valor a ser somado: %d", matrix[i+1][j]);
+					nSum = nSum + 1;
+
+					matSum[k] = matrix[i+1][j];
+					k++;
+
 					i++;
 				}
 
 				else if((matrix[i][j-1] > matrix[i+1][j]) && (matrix[i][j-1] > matrix[i][j+1])){
 					sum = sum + matrix[i][j-1];
-					printf("Left ");
+					printf("Left - ");
 					matrix[i][j] = -1;
+					printf("Valor a ser somado: %d", matrix[i][j-1]);
+					nSum = nSum + 1;
+
+					matSum[k] = matrix[i][j-1];
+					k++;
+
 					j--;
 				}
 
 				else{
 					sum = sum + matrix[i+1][j];
-					printf("Down ");
+					printf("Down - ");
 					matrix[i][j] = -1;
+					printf("Valor a ser somado: %d", matrix[i+1][j]);
+					nSum = nSum + 1;
+
+					matSum[k] = matrix[i+1][j];
+					k++;
+
 					i++;
 				}
 			}
@@ -90,22 +138,40 @@ int runMatrix(int n, int matrix[n][n], int sum){
 
 				if(matrix[i+1][j] > matrix[i][j-1]){
 					sum = sum + matrix[i+1][j];
-					printf("Down ");
+					printf("Down - ");
 					matrix[i][j] = -1;
+					printf("Valor a ser somado: %d", matrix[i+1][j]);
+					nSum = nSum + 1;
+
+					matSum[k] = matrix[i+1][j];
+					k++;
+
 					i++;
 				}
 
 				else if(matrix[i][j-1] > matrix[i+1][j]){
 					sum = sum + matrix[i][j-1];
-					printf("Left ");
+					printf("Left - ");
 					matrix[i][j] = -1;
+					printf("Valor a ser somado: %d", matrix[i][j-1]);
+					nSum = nSum + 1;
+
+					matSum[k] = matrix[i][j-1];
+					k++;
+
 					j--;
 				}
 
 				else{
 					sum = sum + matrix[i+1][j];
-					printf("Down ");
+					printf("Down - ");
 					matrix[i][j] = -1;
+					printf("Valor a ser somado: %d", matrix[i+1][j]);
+					nSum = nSum + 1;
+
+					matSum[k] = matrix[i+1][j];
+					k++;
+
 					i++;
 				}
 			}
@@ -116,9 +182,20 @@ int runMatrix(int n, int matrix[n][n], int sum){
 
 			else if(i == (n-1)){
 				sum = sum + matrix[i][j+1];
-				printf("Right ");
+				printf("Right - ");
+				printf("Valor a ser somado: %d", matrix[i][j+1]);
+				nSum = nSum + 1;
+
+				matSum[k] = matrix[i][j+1];
+				k++;
+
 				j++;
 			}
+			printf("\n");
+		}
+
+		for(k = nSum; k >= 0; k--){
+			printf("[%d]: %d\n", k, matSum[k]);
 		}
 	}
 
